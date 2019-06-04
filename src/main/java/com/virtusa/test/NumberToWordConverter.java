@@ -39,7 +39,14 @@ public class NumberToWordConverter {
     private static final String INVALID = "Invalid Input";
 
 
-    public String convertNumToWord(final int input) throws Exception{
+    /**
+     * Converts the given input into British English Word
+     *
+     * @param input the Number
+     * @return the String which British English Word
+     * @throws Exception if invalid input
+     */
+    public String convertNumToWord(final int input) throws Exception {
         if (input == ZERO) {
             return ZERO_STRING;
         } else if (input < ZERO) {
@@ -49,6 +56,7 @@ public class NumberToWordConverter {
         return convert(input);
 
     }
+
     private String convert(final int input) throws Exception {
         if (input < TWENTY) {
             return SCALE_UNITS[input];
@@ -59,7 +67,7 @@ public class NumberToWordConverter {
         }
 
         if (input < THOUSAND) {
-            return SCALE_UNITS[input / HUNDRED] + getUnit((in) -> in % HUNDRED == ZERO, input, HUNDRED_STRING) +  convert(input % HUNDRED);
+            return SCALE_UNITS[input / HUNDRED] + getUnit((in) -> in % HUNDRED == ZERO, input, HUNDRED_STRING) + convert(input % HUNDRED);
         }
 
         if (input < MILLION) {
